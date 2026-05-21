@@ -1,0 +1,5 @@
+FROM jenkins/jenkins:lts
+
+USER root
+
+RUN useradd -u 17075 k8s_usr -s /bin/bash
