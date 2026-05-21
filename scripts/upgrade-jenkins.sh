@@ -156,10 +156,11 @@ git pull -r origin "$BASE_BRANCH" \
 log_info "Detecting latest Jenkins LTS version..."
 
 JENKINS_VERSION=$(docker run --rm jenkins/jenkins:lts \
-    bash -c "jenkins --version" 2>/dev/null)
+bash -c "java -jar /usr/share/jenkins/jenkins.war --version" \
+2>/dev/null)
 
 if [[ -z "$JENKINS_VERSION" ]]; then
-    exit_error "Failed to detect Jenkins version"
+    exit_error "Unable to detect Jenkins version"
 fi
 
 log_info "Detected Jenkins Version: $JENKINS_VERSION"
