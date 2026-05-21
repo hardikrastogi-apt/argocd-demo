@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: jenkins
-        image: jenkins:initial
+        image: jenkins:2.555.2-v20
         imagePullPolicy: Never
         ports:
         - containerPort: 8080
