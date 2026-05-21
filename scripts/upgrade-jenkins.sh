@@ -214,20 +214,14 @@ log_info "Validation container started successfully"
 docker rm -f temp-jenkins-version >/dev/null 2>&1 || true
 
 # ============================================================
-# TAG + PUSH IMAGE
+# LOCAL MINIKUBE MODE
 # ============================================================
 
-FULL_IMAGE="${NEXUS_REPO}:${FINAL_TAG}"
+FULL_IMAGE="jenkins:${FINAL_TAG}"
 
-log_info "Tagging image..."
+log_info "Using local Minikube image..."
 
-docker tag "jenkins:${FINAL_TAG}" "$FULL_IMAGE" \
-    || exit_error "Docker tag failed"
-
-log_info "Pushing image to Nexus..."
-
-docker push "$FULL_IMAGE" \
-    || exit_error "Docker push failed"
+log_info "Skipping Nexus push in local environment"
 
 # ============================================================
 # UPDATE deployment.yaml
